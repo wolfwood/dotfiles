@@ -1,0 +1,102 @@
+/* emacs.xrdb --- X resource file for Emacs         -*- xrdb -*-
+   Copyright (C) 2003, 2004  Daniel Brockman        vim:ft=xdefaults:
+
+   Author:   Daniel Brockman <daniel@brockman.se>
+   URL:      http://www.deepwood.net/software/xrdb/emacs.xrdb
+   Updated:  2005-05-28
+
+   This file is released under the GNU General Public License.
+  
+   This file is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License as
+   published by the Free Software Foundation; either version 2, or (at
+   your option) any later version.
+  
+   This file is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   General Public License for more details.
+  
+   To receive a copy of the GNU General Public License, go to
+   <http://www.gnu.org/licenses/#GPL> or write to the Free Software
+   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+   Description:
+
+     This file applies to Emacs a set of symbolic constants assumed to
+     be defined by the user (`FONT' and `FONT_BOLD') and by a color
+     theme (the `COLOR_' ones).
+
+   Usage:
+
+     1. Put this file somewhere in your home directory.  You might
+        want to create a separate directory, e.g., `~/.xrdb/', in
+        which to put all X resource files.
+
+     2. Uncomment the lines you like in the ``Suggested Settings''
+        section below.
+
+     3. Obtain an xrdb color theme compatible with this file.  The
+        only one I currently know about is `look-zenburn.xrdb' (see
+        below for a link).
+
+     4. Define `FONT' and `FONT_BOLD' in your main X resource file
+        (most likely `~/.Xdefaults' or `~/.Xresources').  Personally,
+        I have the following two lines at the top:
+
+          #define FONT       -*-lucy-medium-*-*-*-10-*-*-*-*-*-*-*
+          #define FONT_BOLD  -*-lucy-bold-*-*-*-10-*-*-*-*-*-*-*
+
+        You can find a link to the Lucy font files below.  The Lucy
+        fonts currently only come in size 10.  If this is too small
+        for your taste, I suggest Lucida Typewriter, from which Lucy
+        is (most likely illegally) derived.  Simply substitute
+        `lucidatypewriter' for `lucy' and `12' for `10'.
+
+     5. Put the line `#include "~/.xrdb/emacs.xrdb"' in your main X
+        resource file, *below* the other ones you just added.
+
+     6. Restart your X session or run `xrdb -load <resource-file>',
+        where <resource-file> is your main X resource file.
+
+     7. Restart your Emacs.
+
+   See also:
+
+     The Zenburn XRDB color theme
+       <http://www.deepwood.net/software/zenburn/look-zenburn.xrdb>
+
+     Other application-specific X resource files
+       <http://www.deepwood.net/software/xrdb/>
+
+     The Lucy font family (Lucida Typewriter derivative)
+       <http://www.deepwood.net/software/lucy/>  */
+
+/* Suggested Settings */
+
+Emacs.ToolBar: 0
+/* Emacs.MenuBar: off */
+/* Emacs.ScrollBars: off */
+
+Emacs.borderWidth: 0
+Emacs.internalBorder: 0
+
+
+/* Normally, you should not have to edit anything below.  */
+
+#ifdef FONT
+//Emacs.Font: FONT
+//Emacs.pane.menubar.font: FONT
+#endif
+
+/* You can't set the menubar colors and fonts in the Emacs color
+   theme, because it cannot be loaded early enough.  */
+
+#if defined(COLOR_FG) && defined(COLOR_BG)
+Emacs.pane.menubar.foreground: COLOR_FG
+# ifdef ZENBURN  /* FIXME: Generalize?  */
+Emacs.pane.menubar.background: #505050
+# else
+Emacs.pane.menubar.background: COLOR_BG
+# endif
+#endif
