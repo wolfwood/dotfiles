@@ -1,12 +1,18 @@
 #include "/home/wolfwood/.xrdb/look-zenburn.xrdb"
 #include "/home/wolfwood/.xrdb/xterm.xrdb"
 #include "/home/wolfwood/.xrdb/emacs.xrdb"
-/*#include "/afs/cs.pitt.edu/usr0/jamesll/.xrdb/look-zenburn.xrdb"*/
-/*#include "/afs/cs.pitt.edu/usr0/jamesll/.xrdb/xterm.xrdb"*/
-/*#include "/afs/cs.pitt.edu/usr0/jamesll/.xrdb/emacs.xrdb"*/
+
+/*#define FONT       -*-*-medium-*-*-*-20-*-*-*-*-*-*-* */
+/*#define FONT_BOLD  -*-*-bold-*-*-*-20-*-*-*-*-*-*-* */
 
 
-!{{{ XTERM
+#include "/home/wolfwood/.xrdb/look-zenburn.xrdb"
+!#include "/home/wolfwood/.xrdb/xterm.xrdb"
+#include "/home/wolfwood/.xrdb/emacs.xrdb"
+
+!{{{ XTERM\
+!XTerm*font:                    FONT
+!XTerm*boldFont:                FONT_BOLD
 xterm*internalBorder:        0
 xterm*loginShell:         true
 xterm*scrollBar:         false
@@ -18,7 +24,7 @@ xterm*highlightSelection: true
 ! Appearance
 xterm*utf8:          2
 xterm*eightBitInput: true
-!xterm*faceName:      terminus:pixelsize=10
+/* xterm*faceName:      terminus:pixelsize=22 */
 xterm*cursorColor:   #FFFFFF
 ! Zenburn
 xterm*background:  #3f3f3f

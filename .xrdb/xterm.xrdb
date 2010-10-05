@@ -79,17 +79,17 @@
 /* XTerm*scrollBar:               false */
 /* XTerm*visualBell:              true */
 
-
+
 /* Normally, you should not have to edit anything below.  */
 
-/*
+
 #ifdef FONT
 XTerm*font:                    FONT
 #endif
 #ifdef FONT_BOLD
 XTerm*boldFont:                FONT_BOLD
 #endif
-*/
+
 
 #if defined(COLOR_FG) && defined(COLOR_BG)
 XTerm*background:              COLOR_BG
