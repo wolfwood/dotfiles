@@ -76,7 +76,7 @@
 
 Emacs.ToolBar: 0
 /* Emacs.MenuBar: off */
-/* Emacs.ScrollBars: off */
+Emacs.ScrollBars: off
 
 Emacs.borderWidth: 0
 Emacs.internalBorder: 0
@@ -85,8 +85,8 @@ Emacs.internalBorder: 0
 /* Normally, you should not have to edit anything below.  */
 
 #ifdef FONT
-//Emacs.Font: FONT
-//Emacs.pane.menubar.font: FONT
+Emacs.Font: FONT
+Emacs.pane.menubar.font: FONT
 #endif
 
 /* You can't set the menubar colors and fonts in the Emacs color
@@ -94,9 +94,9 @@ Emacs.internalBorder: 0
 
 #if defined(COLOR_FG) && defined(COLOR_BG)
 Emacs.pane.menubar.foreground: COLOR_FG
-# ifdef ZENBURN  /* FIXME: Generalize?  */
+#ifdef ZENBURN  /* FIXME: Generalize?  */
 Emacs.pane.menubar.background: #505050
-# else
+#else
 Emacs.pane.menubar.background: COLOR_BG
-# endif
+#endif
 #endif
