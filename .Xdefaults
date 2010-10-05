@@ -1,6 +1,9 @@
-#include "/afs/cs.pitt.edu/usr0/jamesll/.xrdb/look-zenburn.xrdb"
+#include "/home/wolfwood/.xrdb/look-zenburn.xrdb"
+#include "/home/wolfwood/.xrdb/xterm.xrdb"
+#include "/home/wolfwood/.xrdb/emacs.xrdb"
+/*#include "/afs/cs.pitt.edu/usr0/jamesll/.xrdb/look-zenburn.xrdb"*/
 /*#include "/afs/cs.pitt.edu/usr0/jamesll/.xrdb/xterm.xrdb"*/
-#include "/afs/cs.pitt.edu/usr0/jamesll/.xrdb/emacs.xrdb"
+/*#include "/afs/cs.pitt.edu/usr0/jamesll/.xrdb/emacs.xrdb"*/
 
 
 !{{{ XTERM
