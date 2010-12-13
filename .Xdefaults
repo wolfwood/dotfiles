@@ -6,10 +6,6 @@
 /*#define FONT_BOLD  -*-*-bold-*-*-*-20-*-*-*-*-*-*-* */
 
 
-#include "/home/wolfwood/.xrdb/look-zenburn.xrdb"
-!#include "/home/wolfwood/.xrdb/xterm.xrdb"
-#include "/home/wolfwood/.xrdb/emacs.xrdb"
-
 !{{{ XTERM\
 !XTerm*font:                    FONT
 !XTerm*boldFont:                FONT_BOLD

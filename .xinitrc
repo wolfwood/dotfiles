@@ -4,5 +4,5 @@ xmodmap -e "add Control = Control_L"
 
 xrdb ~/.Xdefaults
 
-pulseaudio&
+start-pulseaudio-x11&
 xmonad

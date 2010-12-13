@@ -37,8 +37,8 @@ myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
 newKeys conf@(XConfig {XMonad.modMask = modm}) = [
  ((modm, xK_p), spawn launcher ),
  ((modm .|. shiftMask  , xK_p), spawn termLauncher),
- ((modm, xK_F9), spawn "amixer set Master 2dB-"),
- ((modm, xK_F12), spawn "amixer set Master 2dB+"),
- ((modm, xK_F11), spawn "amixer set Master toggle")
+ ((modm, xK_F9), spawn "amixer -c 0 set Master 2dB-"),
+ ((modm, xK_F12), spawn "amixer -c 0 set Master 2dB+"),
+ ((modm, xK_F11), spawn "amixer -c 0 set Master toggle")
   ]
 --}}}
