@@ -6,6 +6,9 @@ import XMonad.Layout.NoBorders
  
 import qualified Data.Map as M
 
+terminal :: String
+terminal = "xterm"
+
 --Use a colourscheme with dmenu
 addColor = " -- -nb '#3F3F3F' -nf '#DCDCCC' -sb '#7F9F7F' -sf '#DCDCCC'"  
 
