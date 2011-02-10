@@ -20,7 +20,10 @@ termLauncher = makeLauncher ("-p withterm"++addColor) "exec xterm -e" "" ""
 main = xmonad $ defaultConfig
        { borderWidth = 1
        , keys = myKeys 
-       , layoutHook = smartBorders $ layoutHook defaultConfig -- Don't put borders on fullFloatWindows
+
+       -- Don't put borders on fullFloatWindows (OtherIndicated)
+       , layoutHook = lessBorders (Screen)  $ layoutHook defaultConfig
+
        , manageHook =  myManageHooks
        }
 
