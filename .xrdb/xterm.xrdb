@@ -72,6 +72,11 @@
      The Lucy font family (Lucida Typewriter derivative)
        <http://www.deepwood.net/software/lucy/>  */
 
+
+// copy paste hax
+XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+
+
 /* Suggested Settings */
 
 /* XTerm*saveLines:               4096 */
