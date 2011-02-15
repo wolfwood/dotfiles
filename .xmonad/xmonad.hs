@@ -6,6 +6,9 @@ import XMonad.Layout.NoBorders
  
 import qualified Data.Map as M
 
+terminal :: String
+terminal = "xterm"
+
 --Use a colourscheme with dmenu
 addColor = " -- -nb '#3F3F3F' -nf '#DCDCCC' -sb '#7F9F7F' -sf '#DCDCCC'"  
 
@@ -17,7 +20,10 @@ termLauncher = makeLauncher ("-p withterm"++addColor) "exec xterm -e" "" ""
 main = xmonad $ defaultConfig
        { borderWidth = 1
        , keys = myKeys 
-       , layoutHook = smartBorders $ layoutHook defaultConfig -- Don't put borders on fullFloatWindows
+
+       -- Don't put borders on fullFloatWindows (OtherIndicated)
+       , layoutHook = lessBorders (Screen)  $ layoutHook defaultConfig
+
        , manageHook =  myManageHooks
        }
 
