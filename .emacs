@@ -17,6 +17,10 @@
 (color-theme-zenburn)
 (global-font-lock-mode t)
 
+
+(load-file "~/.emacs.d/graphviz-dot-mode.el") 
+;(require 'graphviz-dot-mode)
+
 (require 'generic-x)
 
 (when (locate-library "javascript")
