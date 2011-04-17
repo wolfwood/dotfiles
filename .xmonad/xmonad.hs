@@ -6,8 +6,8 @@ import XMonad.Layout.NoBorders
  
 import qualified Data.Map as M
 
-terminal :: String
-terminal = "xterm"
+term :: String
+term = "term"
 
 --Use a colourscheme with dmenu
 addColor = " -- -nb '#3F3F3F' -nf '#DCDCCC' -sb '#7F9F7F' -sf '#DCDCCC'"  
@@ -15,12 +15,12 @@ addColor = " -- -nb '#3F3F3F' -nf '#DCDCCC' -sb '#7F9F7F' -sf '#DCDCCC'"
 makeLauncher yargs run exec close = concat
   ["exe=`yeganesh ", yargs, "` && ", run, " ", exec, "$exe", close]
 launcher     = makeLauncher (addColor++"") "eval" "\"exec " "\""
-termLauncher = makeLauncher ("-p withterm"++addColor) "exec xterm -e" "" ""
+termLauncher = makeLauncher ("-p withterm"++addColor) ("exec "++term++" -e") "" ""
 
 main = xmonad $ defaultConfig
        { borderWidth = 1
        , keys = myKeys 
-
+       , terminal = term
        -- Don't put borders on fullFloatWindows (OtherIndicated)
        , layoutHook = lessBorders (Screen)  $ layoutHook defaultConfig
 
