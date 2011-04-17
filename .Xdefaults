@@ -1,10 +1,10 @@
-#include "/home/wolfwood/.xrdb/look-zenburn.xrdb"
-#include "/home/wolfwood/.xrdb/xterm.xrdb"
-#include "/home/wolfwood/.xrdb/emacs.xrdb"
-
 #define FONT       -*-*-medium-*-*-*-20-*-*-*-*-*-*-* 
 #define FONT_BOLD  -*-*-bold-*-*-*-20-*-*-*-*-*-*-* 
 
+#include "/home/wolfwood/.xrdb/look-zenburn.xrdb"
+#include "/home/wolfwood/.xrdb/xterm.xrdb"
+#include "/home/wolfwood/.xrdb/urxvt.xrdb"
+#include "/home/wolfwood/.xrdb/emacs.xrdb"
 
 !{{{ XTERM\
 !XTerm*font:                    FONT
@@ -20,7 +20,7 @@ xterm*highlightSelection: true
 ! Appearance
 xterm*utf8:          2
 xterm*eightBitInput: true
-xterm*faceName:      monospace:pixelsize=14
+xterm*faceName:      inconsolata:pixelsize=22
 xterm*cursorColor:   #FFFFFF
 ! Zenburn
 xterm*background:  #3f3f3f
@@ -108,7 +108,7 @@ xdiary*foreground: #F0DFAF
 
 
 !{{{ XMESSAGE
-Xmessage*font:                  -xos4-terminus-*-*-*-*-*-*-*-*-*-*-iso8859-2
+Xmessage*font:                  FONT
 Xmessage*background:            #3F3F3F
 Xmessage*foreground:            #F0DFAF
 Xmessage*form.*.shapeStyle:     rectangle

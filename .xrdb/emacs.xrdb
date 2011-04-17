@@ -89,6 +89,8 @@ Emacs.Font: FONT
 Emacs.pane.menubar.font: FONT
 #endif
 
+Emacs.font: Bitstream Vera Sans Mono-22
+
 /* You can't set the menubar colors and fonts in the Emacs color
    theme, because it cannot be loaded early enough.  */
 
