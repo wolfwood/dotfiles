@@ -1,5 +1,9 @@
 *~
 *\#
+*.out
+*.o
+*.c
+*.d
 .Xauthority
 .adobe
 .bash_history
