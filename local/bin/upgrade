@@ -1,0 +1,10 @@
+#!/usr/bin/sudo /bin/sh
+emerge --sync || exit
+layman -S || exit
+emerge -auvND world || exit
+read -p "Read any portage messages then tap [enter]..."
+etc-update || exit
+revdep-rebuild || exit
+haskell-updater || exit
+emacs-updater || exit
+python-updater || exit
