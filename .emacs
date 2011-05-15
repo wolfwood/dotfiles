@@ -1,67 +1,44 @@
-(add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/haskell-mode-2.4")
+;; -- Paths --
+(setq load-path (append load-path (list "~/.emacs.d")))
 
-(autoload 'd-mode "d-mode" 
-  "Major mode for editing D code." t)
-(setq auto-mode-alist (cons '( "\\.d\\'" . d-mode ) auto-mode-alist ))
 
-(setq default-tab-width 2)
-
-;file-name-directory("~/.emacs.d/")
-
-;(load "~/.emacs.d/color-theme.el")
-;(load "~/.emacs.d/zenburn.el")
-
-(require 'zenburn)
+;; -- Global Emacs Config --
+(setq tab-width 2)
+(global-font-lock-mode t)
+(setq font-lock-verbose nil)
 
 (color-theme-zenburn)
-(global-font-lock-mode t)
 
 
-(load-file "~/.emacs.d/graphviz-dot-mode.el") 
-;(require 'graphviz-dot-mode)
+;; -- File-specific Syntactic Highlighting Modes --
+;; Languages
+(autoload 'd-mode "d-mode" "Major mode for editing D code." t)
+(setq auto-mode-alist (cons '( "\\.d[i]?\\'" . d-mode ) auto-mode-alist ))
 
-(require 'generic-x)
-
-(when (locate-library "javascript")
-  (autoload 'javascript-mode "javascript" nil t)
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode)))
-
-;;(add-to-list 'load-path "~/.emacs.d/haskellmode")
-
-(setq auto-mode-alist (cons '( "\\.hs\\'" . haskell-mode ) auto-mode-alist ))
-
-(require 'haskell-mode)
-;;(load "~/.emacs.d/haskellmode/haskell-site-file")
-
+;(require 'haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-
-(add-hook 'haskell-mode-hook 'font-lock-mode)
-
 (add-hook 'haskell-mode-hook 'imenu-add-menubar-index)
+
+;(autoload 'graphviz-dot-mode "graphviz-dot-mode" nil t)
+
+;(when (locate-library "javascript")
+;  (autoload 'javascript-mode "javascript" nil t)
+;  (add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode)))
+
+;; Config Filess
+;(when (locate-library "xrdb-mode")
+;  (require 'xrdb-mode)
+;  (setq auto-mode-alist
+;	(append '(("\\.Xdefaults$"    . xrdb-mode)
+;		  ("*.\\.xrdb$"         . xrdb-mode)
+;		  )
+;		auto-mode-alist)))
+
+
+;; -- Menu-driven Configuration Choices --
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#3f3f3f" :foreground "#dcdccc" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 123 :width normal :foundry "bitstream" :family "Bitstream Vera Sans Mono")))))
-
-
-;;(add-hook 'window-configuration-change-hook
-;;					(lambda ()
-;;						(setq frame-title-format
-;;									(concat
-;;									 invocation-name "@" system-name ": "
-;;									 (replace-regexp-in-string
-;;										(concat "/home/" user-login-name) "~"
-;;										(or buffer-file-name "%b"))))))
