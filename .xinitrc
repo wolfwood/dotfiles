@@ -4,6 +4,6 @@ xmodmap -e "add Control = Control_L"
 
 xrdb ~/.Xdefaults
 
-start-pulseaudio-x11&
-nice electricsheep -window-id 0x15a&
+xsetbg pics/backgrounds/Purple_flower.jpg
+
 xmonad

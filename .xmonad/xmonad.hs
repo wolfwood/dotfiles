@@ -2,9 +2,23 @@ import XMonad
 import XMonad.Actions.SpawnOn
 import XMonad.Hooks.ManageHelpers
 import qualified XMonad.StackSet as W
-import XMonad.Layout.NoBorders
- 
 import qualified Data.Map as M
+
+import XMonad.Layout.NoBorders
+
+-- Xmobar
+import System.IO
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
+
+--import XMonad.Prompt
+--import XMonad.Prompt.Ssh
+ 
+import XMonad.Hooks.UrgencyHook
+
+
+workspaces = ["web", "irc", "build", "code", "c0de"] ++ (map show [6..7]) ++ ["tools", "admin"]
 
 term :: String
 term = "term"
@@ -17,14 +31,24 @@ makeLauncher yargs run exec close = concat
 launcher     = makeLauncher (addColor++"") "eval" "\"exec " "\""
 termLauncher = makeLauncher ("-p withterm"++addColor) ("exec "++term++" -e") "" ""
 
-main = xmonad $ defaultConfig
+main = do
+  xmproc <- spawnPipe "/usr/bin/xmobar /home/wolfwood/.xmobarrc"
+  xmonad $ withUrgencyHook NoUrgencyHook
+       $ defaultConfig
        { borderWidth = 1
        , keys = myKeys 
        , terminal = term
+       , XMonad.workspaces = Main.workspaces
        -- Don't put borders on fullFloatWindows (OtherIndicated)
-       , layoutHook = lessBorders (Screen)  $ layoutHook defaultConfig
+       , layoutHook = avoidStruts $ lessBorders (Screen)  $ layoutHook defaultConfig
 
-       , manageHook =  myManageHooks
+       , logHook = dynamicLogWithPP xmobarPP
+                   { ppOutput = hPutStrLn xmproc 
+                   , ppCurrent = xmobarColor "#f0dfaf" "" . wrap "[" "]"
+                   , ppUrgent =  xmobarColor "#dfaf8f" "" . wrap ">" "<" . xmobarStrip
+                   , ppTitle = xmobarColor "#93e0e3" "" . shorten 50 
+                   }
+       , manageHook = manageDocks <+> myManageHooks
        }
 
 myManageHooks = composeAll
@@ -46,5 +70,6 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = [
  ((modm, xK_F9), spawn "amixer -c 0 set Master 2dB-"),
  ((modm, xK_F12), spawn "amixer -c 0 set Master 2dB+"),
  ((modm, xK_F11), spawn "amixer -c 0 set Master toggle")
+-- , ((modm .|. controlMask, xK_s), sshPrompt defaultXPConfig)
   ]
 --}}}

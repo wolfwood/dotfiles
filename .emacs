@@ -3,7 +3,7 @@
 
 
 ;; -- Global Emacs Config --
-(setq tab-width 2)
+(setq default-tab-width 2)
 (global-font-lock-mode t)
 (setq font-lock-verbose nil)
 
@@ -15,7 +15,7 @@
 (autoload 'd-mode "d-mode" "Major mode for editing D code." t)
 (setq auto-mode-alist (cons '( "\\.d[i]?\\'" . d-mode ) auto-mode-alist ))
 
-;(require 'haskell-mode)
+(autoload 'haskell-mode "haskell-mode" nil t)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)

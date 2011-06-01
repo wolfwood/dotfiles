@@ -1,8 +1,8 @@
 #define FONT       -*-*-medium-*-*-*-20-*-*-*-*-*-*-* 
 #define FONT_BOLD  -*-*-bold-*-*-*-20-*-*-*-*-*-*-*
 
-#define FANCY_FONT			 Inconsolata-14
-#define FANCY_FONT_BOLD  Inconsolata-Bold-14
+#define FANCY_FONT			 Inconsolata-11
+#define FANCY_FONT_BOLD  Inconsolata-Bold-11
 
 #include "/home/wolfwood/.xrdb/look-zenburn.xrdb"
 #include "/home/wolfwood/.xrdb/xterm.xrdb"
