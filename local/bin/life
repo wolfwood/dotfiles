@@ -1,0 +1,5 @@
+if [ -e /sys/bus/acpi/drivers/battery/PNP0C0A\:00/power_supply/BAT0/charge_now ]; then
+ echo `cat /sys/bus/acpi/drivers/battery/PNP0C0A\:00/power_supply/BAT0/charge_now` \* 100 / `cat /sys/bus/acpi/drivers/battery/PNP0C0A\:00/power_supply/BAT0/charge_full` |bc
+else
+ echo `cat /sys/bus/acpi/drivers/battery/PNP0C0A\:00/power_supply/BAT0/energy_now` \* 100 / `cat /sys/bus/acpi/drivers/battery/PNP0C0A\:00/power_supply/BAT0/energy_full` |bc
+fi

@@ -1,0 +1,5 @@
+if [ -e /sys/bus/acpi/drivers/battery/PNP0C0A\:00/power_supply/BAT0/charge_now ]; then
+  echo scale=2 \; `cat /sys/bus/acpi/drivers/battery/PNP0C0A\:00/power_supply/BAT0/current_now` \* `cat /sys/bus/acpi/drivers/battery/PNP0C0A\:00/power_supply/BAT0/voltage_now` /1000000000000 |bc
+else
+  echo scale=2 \; `cat /sys/bus/acpi/drivers/battery/PNP0C0A:00/power_supply/BAT0/power_now` /1000000 |bc
+fi
