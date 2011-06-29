@@ -3,3 +3,5 @@
 	name = wolfwood
 [core]
 	excludesfile = /home/wolfwood/.global_ignore
+[color]
+	ui = true
