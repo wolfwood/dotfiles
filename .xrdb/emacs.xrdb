@@ -75,7 +75,7 @@
 /* Suggested Settings */
 
 Emacs.ToolBar: 0
-Emacs.MenuBar: 1
+Emacs.MenuBar: 0
 Emacs.ScrollBars: off
 
 Emacs.borderWidth: 0
