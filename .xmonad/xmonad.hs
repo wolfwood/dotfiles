@@ -18,7 +18,7 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Hooks.UrgencyHook
 
 
-workspaces = ["web", "irc", "build", "code", "c0de"] ++ (map show [6..7]) ++ ["tools", "admin"]
+workspaces = ["web", "irc", "build", "code", "c0de", "6", "tex", "tools", "admin"]
 
 term :: String
 term = "term"
@@ -40,8 +40,7 @@ main = do
        , terminal = term
        , XMonad.workspaces = Main.workspaces
        -- Don't put borders on fullFloatWindows (OtherIndicated)
-       , layoutHook = avoidStruts $ lessBorders (Screen)  $ layoutHook defaultConfig
-
+       , layoutHook = lessBorders (Screen)  $ (avoidStruts (layoutHook defaultConfig)) ||| Full 
        , logHook = dynamicLogWithPP xmobarPP
                    { ppOutput = hPutStrLn xmproc 
                    , ppCurrent = xmobarColor "#f0dfaf" "" . wrap "[" "]"
