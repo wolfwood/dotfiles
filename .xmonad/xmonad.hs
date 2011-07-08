@@ -55,7 +55,9 @@ myManageHooks = composeAll
     [ isFullscreen --> (doF W.focusDown <+> doFullFloat)
     -- Single monitor setups, or if the previous hook doesn't work
     -- [ isFullscreen --> doFullFloat
-    -- skipped
+    
+    -- browser has to stay in its box
+    , className =? "Firefox" --> doShift "web"
     ]
 
 -- Union default and new key bindings
