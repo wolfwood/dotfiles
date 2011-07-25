@@ -95,7 +95,7 @@
 #define COLOR_BG                  #3f3f3f
 
 #define COLOR_TERM_BLACK          #3f3f3f
-#define COLOR_TERM_DARK_RED       #705050
+#define COLOR_TERM_DARK_RED       #c08080
 #define COLOR_TERM_DARK_GREEN     #60b48a
 #define COLOR_TERM_DARK_YELLOW    #dfaf8f
 #define COLOR_TERM_DARK_BLUE      #506070

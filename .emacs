@@ -9,6 +9,9 @@
 
 (color-theme-zenburn)
 
+(setq vcursor-key-bindings 't)      ;; enable default bindings to try it out
+(load "vcursor")
+
 
 ;; -- File-specific Syntactic Highlighting Modes --
 ;; Languages

@@ -4,6 +4,6 @@ xmodmap -e "add Control = Control_L"
 
 xrdb ~/.Xdefaults
 
-xsetbg pics/backgrounds/Purple_flower.jpg
+xsetbg ~/pics/backgrounds/Purple_flower.jpg
 
 xmonad
