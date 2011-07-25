@@ -5,3 +5,5 @@
 	excludesfile = /home/wolfwood/.global_ignore
 [color]
 	ui = true
+[log]
+	decorate = full
