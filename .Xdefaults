@@ -1,8 +1,17 @@
 #define FONT       -*-*-medium-*-*-*-20-*-*-*-*-*-*-* 
 #define FONT_BOLD  -*-*-bold-*-*-*-20-*-*-*-*-*-*-*
 
-#define FANCY_FONT			 Inconsolata-11
-#define FANCY_FONT_BOLD  Inconsolata-Bold-11
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+Xft.dpi: 96
+
+
+#define FANCY_FONT		Inconsolata-11
+#define FANCY_FONT_BOLD		Inconsolata-Bold-11
 
 #include "/home/wolfwood/.xrdb/look-zenburn.xrdb"
 #include "/home/wolfwood/.xrdb/xterm.xrdb"
