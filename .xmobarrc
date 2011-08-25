@@ -1,4 +1,4 @@
-Config { font = "xft:inconsolata:pixelsize=15:antialias=true"
+Config { font = "xft:inconsolata:bold:pixelsize=11:antialias=true"
        , bgColor = "#202020"
        , fgColor = "#9fc59f" -- "#93e0e3"
        , position = Bottom
@@ -8,7 +8,7 @@ Config { font = "xft:inconsolata:pixelsize=15:antialias=true"
                     , Run Date "%a %b %_d <fc=#dc8cc3>%k:%M</fc>" "date" 50
 		    , Run Battery ["-t", "<left>% <timeleft>","-L","15","-H","50","-l","red","-n","#dfaf8f","-h","#9fc59f"] 50
 		    , Run ThermalZone 0 ["-t","<temp>C","-L","56","-H","62","-l","#9fc59f","-n","#dfaf8f","-h","red"] 10
-		    , Run Com "watts" ["-L","10","-H","20","-l","#9fc59f","-n","#dfaf8f","-h","red"] "" 50
+		    , Run Com "watts" ["-L","10","-H","20","-l","#9fc59f","-n","#dfaf8f","-h","red"] "" 10
 	            , Run StdinReader
                     ]
        , sepChar = "%"

@@ -18,7 +18,7 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Hooks.UrgencyHook
 
 
-workspaces = ["web", "irc", "build", "code", "c0de", "6", "tex", "tools", "admin"]
+workspaces = ["web", "irc", "build", "code", "c0de", "misc", "tex", "tools", "admin"]
 
 term :: String
 term = "term"
@@ -45,7 +45,7 @@ main = do
                    { ppOutput = hPutStrLn xmproc 
                    , ppCurrent = xmobarColor "#f0dfaf" "" . wrap "[" "]"
                    , ppUrgent =  xmobarColor "#dfaf8f" "" . wrap ">" "<" . xmobarStrip
-                   , ppTitle = xmobarColor "#93e0e3" "" . shorten 50 
+                   , ppTitle = xmobarColor "#93e0e3" "" . shorten 65 
                    }
        , manageHook = manageDocks <+> myManageHooks
        }
