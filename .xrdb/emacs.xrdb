@@ -84,13 +84,16 @@ Emacs.internalBorder: 0
 
 /* Normally, you should not have to edit anything below.  */
 
+emacs.FontBackend: xft
+
 #ifdef FONT
-Emacs.Font: FANCY_FONT
-Emacs.BoldFont: FANCY_FONT_BOLD
-Emacs.pane.menubar.font: FONT
+//Emacs.Font: FANCY_FONT
+//Emacs.BoldFont: FANCY_FONT_BOLD
+//Emacs.pane.menubar.font: FONT
 #endif
 
-/* Emacs.Font: Inconsolata-14 */
+Emacs.Font: Inconsolata:antialias=true:pixelsize=14
+Emacs.BoldFont: Inconsolata:bold:antialias=true:pixelsize=14
 
 /* You can't set the menubar colors and fonts in the Emacs color
    theme, because it cannot be loaded early enough.  */
