@@ -2,6 +2,7 @@
 *\#
 *.out
 *.o
+*.elc
 *.c
 *.d
 *.orig
