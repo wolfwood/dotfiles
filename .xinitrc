@@ -5,6 +5,6 @@ xmodmap -e "add Control = Control_L"
 xrdb ~/.Xdefaults
 
 start-pulseaudio-x11&
-nice electricsheep -window-id 0x15a&
+nice electricsheep -window-id 0x21c&
 
 xmonad
