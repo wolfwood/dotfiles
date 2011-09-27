@@ -5,6 +5,9 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Tabbed
+import XMonad.Layout.PerWorkspace
+import XMonad.Util.Themes
 
 -- Xmobar
 import System.IO
@@ -31,6 +34,13 @@ makeLauncher yargs run exec close = concat
 launcher     = makeLauncher (addColor++"") "eval" "\"exec " "\""
 termLauncher = makeLauncher ("-p withterm"++addColor) ("exec "++term++" -e") "" ""
 
+myTheme = defaultTheme { fontName = "xft:inconsolata:bold:pixelsize=11:antialias=true", decoHeight = 14
+                       , activeColor = "#202020"
+                       , inactiveColor = "#202020"
+                       , activeBorderColor = "#202020"
+                       , inactiveBorderColor = "#202020"
+}
+
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar /home/wolfwood/.xmobarrc"
   xmonad $ withUrgencyHook NoUrgencyHook
@@ -40,7 +50,7 @@ main = do
        , terminal = term
        , XMonad.workspaces = Main.workspaces
        -- Don't put borders on fullFloatWindows (OtherIndicated)
-       , layoutHook = lessBorders (Screen)  $ (avoidStruts (layoutHook defaultConfig)) ||| Full 
+       , layoutHook = lessBorders (Screen)  $ (avoidStruts ((onWorkspace "web" (tabbedBottom shrinkText myTheme) (layoutHook defaultConfig) ))) ||| Full
        , logHook = dynamicLogWithPP xmobarPP
                    { ppOutput = hPutStrLn xmproc 
                    , ppCurrent = xmobarColor "#f0dfaf" "" . wrap "[" "]"
@@ -58,6 +68,7 @@ myManageHooks = composeAll
     
     -- browser has to stay in its box
     , className =? "Firefox" --> doShift "web"
+    , className =? "Uzbl-core" --> doShift "web"
     ]
 
 -- Union default and new key bindings
@@ -67,6 +78,7 @@ myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
 --    Add new and/or redefine key bindings
 newKeys conf@(XConfig {XMonad.modMask = modm}) = [
  ((modm, xK_p), spawn launcher ),
+ ((modm, xK_u), spawn "uzbl-browser" ),
  ((modm .|. shiftMask  , xK_p), spawn termLauncher),
  ((modm, xK_F9), spawn "amixer -c 0 set Master 2dB-"),
  ((modm, xK_F12), spawn "amixer -c 0 set Master 2dB+"),
