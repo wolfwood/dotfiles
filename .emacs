@@ -3,7 +3,7 @@
 
 
 ;; -- Global Emacs Config --
-(setq tab-width 2)
+(setq default-tab-width 2)
 (global-font-lock-mode t)
 (setq font-lock-verbose nil)
 (setq-default show-trailing-whitespace t)
