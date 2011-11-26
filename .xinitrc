@@ -5,8 +5,8 @@ xmodmap -e "add Control = Control_L"
 xrdb ~/.Xdefaults
 
 xsetbg ~/pics/backgrounds/Purple_flower.jpg
-#xsetroot -cursor_name left_ptr
+xsetroot -cursor_name left_ptr
 
-unclutter -idle 3 &
+unclutter -idle 2 -grab &
 
 xmonad
