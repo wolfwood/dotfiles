@@ -95,6 +95,9 @@ set download_handler    = sync_spawn @scripts_dir/download.sh
 # Scroll percentage calculation
 @on_event   SCROLL_VERT    set scroll_message = \@<(function(curr, min, max, size){if(max == size) return '--'; var p=(curr/(max - size)); return Math.round(10000*p)/100;})(%1,%2,%3,%4)>\@%
 
+# call dynamic zoom script
+@on_event GEOMETRY_CHANGED spawn @scripts_dir/dynzoom.py \@geometry 1366 768
+
 # === Behaviour and appearance ===============================================
 
 # Custom CSS can be defined here, including link follower hint styles
@@ -122,8 +125,8 @@ set selected_section  = <span foreground="#606060">\@[\@SELECTED_URI]\@</span>
 
 set download_section  = <span foreground="white">\@downloads</span>
 
-set status_format       = <span font_family="monospace">@mode_section @keycmd_section @progress_section @name_section @status_section @scroll_section @selected_section @download_section</span>
-set status_format_right = <span font_family="monospace"><span foreground="#666">uri:</span> @uri_section</span>
+set status_format       = <span font_desc="Inconsolata Medium 9">@mode_section @keycmd_section @progress_section @name_section @status_section @scroll_section @selected_section @download_section</span>
+set status_format_right = <span font_desc="Inconsolata Medium 9"><span foreground="#666">uri:</span> @uri_section</span>
 
 set title_format_long = \@keycmd_prompt \@raw_modcmd \@raw_keycmd \@TITLE - Uzbl browser <\@NAME> \@SELECTED_URI
 
@@ -145,7 +148,12 @@ set useragent         = Uzbl (Webkit @{WEBKIT_MAJOR}.@{WEBKIT_MINOR}) (@(+uname 
 #request WHITELIST_COOKIE domain 'uzbl.org$' expires '^$'
 
 # Drop google analytics tracking cookies (applied after whitelists if any)
-#request BLACKLIST_COOKIE name '^__utm.$'
+request BLACKLIST_COOKIE name '^__utm.$'
+
+# ==== Session saver =====
+set save_session            = 1
+set json_session            = 0
+set session_file            = $HOME/.local/share/uzbl/session
 
 # === Key binding configuration ==============================================
 # --- Internal modmapping and ignoring ---------------------------------------
@@ -215,9 +223,16 @@ set ebind     = @mode_bind global,-insert
 # --- Mouse bindings ---------------------------------------------------------
 
 # Middle click open in new window
+#@bind  <Button2>  = sh 'uzbl-browser -u \@SELECTED_URI'
 @bind  <Button2>  = sh 'if [ "$1" ]; then echo "event REQ_NEW_WINDOW $1" > "$UZBL_FIFO"; else echo "uri $(xclip -o | sed s/\\\@/%40/g)" > "$UZBL_FIFO"; fi' '\@SELECTED_URI'
+#@bind <Button2> = sh 'if [ "\@SELECTED_URI" ]; then echo "event REQ_NEW_WINDOW \@SELECTED_URI" > $UZBL_FIFO; fi'
+
+@cbind CSS	= set stylesheet_uri = file://@config_home/uzbl/defaultstyle.css
+@cbind css	= set stylesheet_uri = file://@config_home/uzbl/style.css
 
 # --- Keyboard bindings ------------------------------------------------------
+@cbind WQ = @scripts_dir/session save
+@cbind QQ = @scripts_dir/session kill
 
 # With this command you can enter in any command at runtime when prefixed with
 # a colon.
@@ -241,7 +256,7 @@ set ebind     = @mode_bind global,-insert
 @cbind  <End>        = scroll vertical end
 @cbind  ^            = scroll horizontal begin
 @cbind  $            = scroll horizontal end
-@cbind  <Space>      = scroll vertical end
+@cbind  <Space>      = scroll vertical 100%
 
 # Navigation binds
 @cbind  b   = back
@@ -272,6 +287,9 @@ set ebind     = @mode_bind global,-insert
 
 # Web searching binds
 @cbind  gg<Google:>_         = uri http://www.google.com/search?q=\@<encodeURIComponent(%r)>\@
+
+@cbind  G										 = uri http://www.google.com/search?q=\@(perl -MURI::Escape -e 'print uri_escape(`xclip -o`);')\@
+#@cbind  G										 = uri http://www.google.com/search?q=\@(xclip -o)\@
 @cbind  ddg<DuckDuckGo:>_    = uri http://duckduckgo.com/?q=%s
 @cbind  \\awiki<Archwiki:>_  = uri http://wiki.archlinux.org/index.php/Special:Search?search=\@<encodeURIComponent(%r)>\@&go=Go
 @cbind  \\wiki<Wikipedia:>_  = uri http://en.wikipedia.org/w/index.php?title=Special:Search&search=\@<encodeURIComponent(%r)>\@&go=Go
@@ -288,8 +306,8 @@ set ebind     = @mode_bind global,-insert
 
 # Use socat to directly inject commands into uzbl-core and view events
 # raised by uzbl-core:
-@cbind  <Ctrl><Mod1>t  = sh 'xterm -e "socat unix-connect:\"$UZBL_SOCKET\" -"'
-#@cbind  <Ctrl><Mod1>t  = sh 'urxvt -e socat unix-connect:"$UZBL_SOCKET" -'
+#@cbind  <Ctrl><Mod1>t  = sh 'xterm -e "socat unix-connect:\"$UZBL_SOCKET\" -"'
+@cbind  <Ctrl><Mod1>t  = sh 'urxvt -e socat unix-connect:"$UZBL_SOCKET" -'
 
 # Uri opening prompts
 @cbind  o<uri:>_       = uri %s
@@ -398,7 +416,7 @@ menu_separator separator_1
 menu_add Quit uzbl = exit
 
 # Link context menu
-menu_link_add Print Link = print \@SELECTED_URI
+#menu_link_add Print Link = print \@SELECTED_URI
 
 # === Mode configuration =====================================================
 
