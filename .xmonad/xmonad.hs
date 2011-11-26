@@ -28,18 +28,20 @@ term :: String
 term = "term"
 
 --Use a colourscheme with dmenu
-addColor = " -- -nb '#3F3F3F' -nf '#DCDCCC' -sb '#7F9F7F' -sf '#DCDCCC'"  
+addColor = " -- -nb '#3F3F3F' -nf '#DCDCCC' -sb '#7F9F7F' -sf '#DCDCCC'"
 
 makeLauncher yargs run exec close = concat
   ["exe=`yeganesh ", yargs, "` && ", run, " ", exec, "$exe", close]
 launcher     = makeLauncher (addColor++"") "eval" "\"exec " "\""
 termLauncher = makeLauncher ("-p withterm"++addColor) ("exec "++term++" -e") "" ""
 
-myTheme = defaultTheme { fontName = "xft:inconsolata:bold:pixelsize=11:antialias=true", decoHeight = 14
-                       , activeColor = "#202020"
+myTheme = defaultTheme { fontName = "xft:inconsolata:bold:pixelsize=9:antialias=true", decoHeight = 13
+                       , activeColor =  "#202020"
+                       , activeBorderColor = "#93e0e3"
+                       , activeTextColor = "#93e0e3"
+
                        , inactiveColor = "#202020"
-                       , activeBorderColor = "#202020"
-                       , inactiveBorderColor = "#202020"
+                       , inactiveBorderColor = "#404040" --"#709080"
 }
 
 main = do
@@ -47,16 +49,16 @@ main = do
   xmonad $ withUrgencyHook NoUrgencyHook
        $ defaultConfig
        { borderWidth = 1
-       , keys = myKeys 
+       , keys = myKeys
        , terminal = term
        , XMonad.workspaces = Main.workspaces
        -- Don't put borders on fullFloatWindows (OtherIndicated)
        , layoutHook = lessBorders (Screen)  $ (avoidStruts ((onWorkspace "web" (tabbedBottom shrinkText myTheme) (layoutHook defaultConfig) ))) ||| spiral (6/7) ||| Full
        , logHook = dynamicLogWithPP xmobarPP
-                   { ppOutput = hPutStrLn xmproc 
+                   { ppOutput = hPutStrLn xmproc
                    , ppCurrent = xmobarColor "#f0dfaf" "" . wrap "[" "]"
                    , ppUrgent =  xmobarColor "#dfaf8f" "" . wrap ">" "<" . xmobarStrip
-                   , ppTitle = xmobarColor "#93e0e3" "" . shorten 65 
+                   , ppTitle = xmobarColor "#93e0e3" "" . shorten 65
                    }
        , manageHook = manageDocks <+> myManageHooks
        }
@@ -66,7 +68,7 @@ myManageHooks = composeAll
     [ isFullscreen --> (doF W.focusDown <+> doFullFloat)
     -- Single monitor setups, or if the previous hook doesn't work
     -- [ isFullscreen --> doFullFloat
-    
+
     -- browser has to stay in its box
     , className =? "Firefox" --> doShift "web"
     , className =? "Uzbl-core" --> doShift "web"
@@ -75,7 +77,7 @@ myManageHooks = composeAll
 -- Union default and new key bindings
 myKeys x  = M.union (M.fromList (newKeys x)) (keys defaultConfig x)
 
---{{{ Keybindings 
+--{{{ Keybindings
 --    Add new and/or redefine key bindings
 newKeys conf@(XConfig {XMonad.modMask = modm}) = [
  ((modm, xK_p), spawn launcher ),

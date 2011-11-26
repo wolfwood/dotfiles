@@ -1,4 +1,4 @@
-#define FONT       -*-*-medium-*-*-*-20-*-*-*-*-*-*-* 
+#define FONT       -*-*-medium-*-*-*-20-*-*-*-*-*-*-*
 #define FONT_BOLD  -*-*-bold-*-*-*-20-*-*-*-*-*-*-*
 
 Xft.autohint: 0
@@ -10,8 +10,14 @@ Xft.rgba: rgb
 Xft.dpi: 96
 
 
+Uzbl*font: xft:inconsolata:pixelsize=11:antialias=true,xft:VL Gothic:pixelsize=11:antialias=true,xft:DejaVu Sans:pixelsize=11:antialias=true,xft:unifont:style=Medium:pixelsize=11:antialias=true
+Uzbl-browser*font: xft:inconsolata:pixelsize=11:antialias=true,xft:VL Gothic:pixelsize=11:antialias=true,xft:DejaVu Sans:pixelsize=11:antialias=true,xft:unifont:style=Medium:pixelsize=11:antialias=true
+Uzbl-core*font: xft:inconsolata:pixelsize=11:antialias=true,xft:VL Gothic:pixelsize=11:antialias=true,xft:DejaVu Sans:pixelsize=11:antialias=true,xft:unifont:style=Medium:pixelsize=11:antialias=true
+
 #define FANCY_FONT		Inconsolata-11
 #define FANCY_FONT_BOLD		Inconsolata-Bold-11
+
+Xmessage*font: FONT
 
 #include "/home/wolfwood/.xrdb/look-zenburn.xrdb"
 #include "/home/wolfwood/.xrdb/xterm.xrdb"
