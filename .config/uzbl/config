@@ -78,6 +78,8 @@ set download_handler    = sync_spawn @scripts_dir/download.sh
 # Userscripts/per-site-settings. See the script and the example configuration for details
 #@on_event   LOAD_COMMIT    spawn @scripts_dir/per-site-settings.py @data_home/uzbl/per-site-settings
 
+#@on_event LOAD_COMMIT script @scripts_dir/middle_click.js
+
 # Load finish handlers
 @on_event   LOAD_FINISH    @set_status <span foreground="gold">done</span>
 @on_event   LOAD_FINISH    spawn @scripts_dir/history.sh

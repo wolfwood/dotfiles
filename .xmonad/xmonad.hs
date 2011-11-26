@@ -7,6 +7,7 @@ import qualified Data.Map as M
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Tabbed
 import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Spiral
 import XMonad.Util.Themes
 
 -- Xmobar
@@ -17,7 +18,7 @@ import XMonad.Util.Run(spawnPipe)
 
 --import XMonad.Prompt
 --import XMonad.Prompt.Ssh
- 
+
 import XMonad.Hooks.UrgencyHook
 
 
@@ -50,7 +51,7 @@ main = do
        , terminal = term
        , XMonad.workspaces = Main.workspaces
        -- Don't put borders on fullFloatWindows (OtherIndicated)
-       , layoutHook = lessBorders (Screen)  $ (avoidStruts ((onWorkspace "web" (tabbedBottom shrinkText myTheme) (layoutHook defaultConfig) ))) ||| Full
+       , layoutHook = lessBorders (Screen)  $ (avoidStruts ((onWorkspace "web" (tabbedBottom shrinkText myTheme) (layoutHook defaultConfig) ))) ||| spiral (6/7) ||| Full
        , logHook = dynamicLogWithPP xmobarPP
                    { ppOutput = hPutStrLn xmproc 
                    , ppCurrent = xmobarColor "#f0dfaf" "" . wrap "[" "]"
