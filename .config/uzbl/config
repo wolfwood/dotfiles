@@ -228,11 +228,13 @@ set ebind     = @mode_bind global,-insert
 #@bind <Button2> = sh 'if [ "\@SELECTED_URI" ]; then echo "event REQ_NEW_WINDOW \@SELECTED_URI" > $UZBL_FIFO; fi'
 
 @cbind CSS	= set stylesheet_uri = file://@config_home/uzbl/defaultstyle.css
-@cbind css	= set stylesheet_uri = file://@config_home/uzbl/style.css
+@cbind Css	= set stylesheet_uri = file://@config_home/uzbl/style.css
 
 # --- Keyboard bindings ------------------------------------------------------
-@cbind WQ = @scripts_dir/session save
-@cbind QQ = @scripts_dir/session kill
+@cbind WQ = spawn @scripts_dir/session.sh launch
+@cbind QQ = spawn @scripts_dir/session.sh endsession
+#@cbind WQ = spawn @scripts_dir/session open
+#@cbind QQ = spawn @scripts_dir/session kill
 
 # With this command you can enter in any command at runtime when prefixed with
 # a colon.
