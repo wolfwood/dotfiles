@@ -22,6 +22,10 @@ import XMonad.Util.Run(spawnPipe)
 -- figuring out when ppl talk in irc
 import XMonad.Hooks.UrgencyHook
 
+-- volume display
+import XMonad.Actions.Volume
+import XMonad.Util.Dzen
+
 
 workspaces = ["web", "irc", "build", "code", "c0de", "misc", "tex", "tools", "admin"]
 
@@ -52,7 +56,6 @@ main = do
        { borderWidth = 1
        , modMask = mod4Mask
        , startupHook = spawn "xmodmap -e \"add Mod4 = Menu\""
-       --, startupHook = spawn "xmodmap -e \"keysym Menu = Super_L\""
        , keys = myKeys
        , terminal = term
        , XMonad.workspaces = Main.workspaces
@@ -87,9 +90,18 @@ newKeys conf@(XConfig {XMonad.modMask = modm}) = [
  ((modm, xK_p), spawn launcher ),
  ((modm, xK_u), spawn "uzbl-browser" ),
  ((modm .|. shiftMask  , xK_p), spawn termLauncher),
- ((modm, xK_F9), spawn "amixer -c 0 set Master 2dB-"),
- ((modm, xK_F12), spawn "amixer -c 0 set Master 2dB+"),
- ((modm, xK_F11), spawn "amixer -c 0 set Master toggle")
--- , ((modm .|. controlMask, xK_s), sshPrompt defaultXPConfig)
+ -- XF86AudioMute
+ ((0 , 0x1008ff12), toggleMute    >> return ()),
+ -- XF86AudioLowerVolume
+ ((0 , 0x1008ff11), lowerVolume 2 >>= audioAlert),
+ -- XF86AudioRaiseVolume
+ ((0 , 0x1008ff13), raiseVolume 2 >>= audioAlert)
   ]
 --}}}
+
+audioAlert = dzenConfig centered . show . round
+centered = onCurr (center 150 66)
+      >=> timeout 0.5
+      >=> font "-*-helvetica-*-r-*-*-64-*-*-*-*-*-*-*"
+      >=> addArgs ["-fg", "#80c0ff"]
+      >=> addArgs ["-bg", "#000040"]
