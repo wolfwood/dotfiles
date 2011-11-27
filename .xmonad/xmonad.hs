@@ -19,13 +19,14 @@ import XMonad.Util.Run(spawnPipe)
 --import XMonad.Prompt
 --import XMonad.Prompt.Ssh
 
+-- figuring out when ppl talk in irc
 import XMonad.Hooks.UrgencyHook
 
 
 workspaces = ["web", "irc", "build", "code", "c0de", "misc", "tex", "tools", "admin"]
 
 term :: String
-term = "term"
+term = "term" -- this is a script that launches urxvt in client-daemon mode
 
 --Use a colourscheme with dmenu
 addColor = " -- -nb '#3F3F3F' -nf '#DCDCCC' -sb '#7F9F7F' -sf '#DCDCCC'"
@@ -49,15 +50,18 @@ main = do
   xmonad $ withUrgencyHook NoUrgencyHook
        $ defaultConfig
        { borderWidth = 1
+       , modMask = mod4Mask
+       , startupHook = spawn "xmodmap -e \"add Mod4 = Menu\""
+       --, startupHook = spawn "xmodmap -e \"keysym Menu = Super_L\""
        , keys = myKeys
        , terminal = term
        , XMonad.workspaces = Main.workspaces
        -- Don't put borders on fullFloatWindows (OtherIndicated)
-       , layoutHook = lessBorders (Screen)  $ (avoidStruts ((onWorkspace "web" (tabbedBottom shrinkText myTheme) (layoutHook defaultConfig) ))) ||| spiral (6/7) ||| Full
+       , layoutHook = lessBorders (Screen)  $ (avoidStruts ((onWorkspace "web" (tabbedBottom shrinkText myTheme ||| spiral (6/7)) (layoutHook defaultConfig) ))) ||| Full
        , logHook = dynamicLogWithPP xmobarPP
                    { ppOutput = hPutStrLn xmproc
                    , ppCurrent = xmobarColor "#f0dfaf" "" . wrap "[" "]"
-                   , ppUrgent =  xmobarColor "#dfaf8f" "" . wrap ">" "<" . xmobarStrip
+                   , ppUrgent =  xmobarColor "#dfaf8f" "" . wrap ">" "<"
                    , ppTitle = xmobarColor "#93e0e3" "" . shorten 65
                    }
        , manageHook = manageDocks <+> myManageHooks
