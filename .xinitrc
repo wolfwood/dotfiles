@@ -7,6 +7,6 @@ xrdb ~/.Xdefaults
 xsetbg ~/pics/backgrounds/Purple_flower.jpg
 xsetroot -cursor_name left_ptr
 
-unclutter -idle 2 -grab &
+unclutter -idle 1 -grab -reset &
 
 xmonad
