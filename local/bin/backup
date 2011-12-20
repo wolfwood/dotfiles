@@ -1,0 +1,2 @@
+#!/usr/bin/sudo /bin/sh
+rsync -avz  --exclude /tmp --exclude "/dev/*" --exclude "/proc/*" --exclude "/sys/*" / wolfwood@192.168.1.3:backups/valkyrie/

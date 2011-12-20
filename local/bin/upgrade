@@ -1,7 +1,20 @@
 #!/usr/bin/sudo /bin/sh
-emerge --sync || exit
-layman -S || exit
-emerge -auvND world || exit
+
+FETCH=1
+
+for arg in $@; do
+	case $arg in
+		--nofetch) FETCH=0;;
+		--write) EFLAGS=--autounmask-write;;
+	esac
+done
+
+if [ $FETCH -eq 1 ]; then
+	emerge --sync || exit
+	layman -S || exit
+fi
+
+emerge $EFLAGS -auvND world || exit
 read -p "Read any portage messages then tap [enter]..."
 etc-update || exit
 revdep-rebuild || exit
