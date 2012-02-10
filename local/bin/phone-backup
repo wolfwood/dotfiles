@@ -1,4 +1,4 @@
 #!/usr/bin/sudo /bin/sh
-mount /dev/sdb /mnt/floppy
-su -c "rsync -avz  /mnt/floppy/ phone/backup/" wolfwood
-umount /mnt/floppy
+mount /dev/sdb /mnt/phone
+su -c "rsync -avz  /mnt/phone/ ~/phone/backup/" wolfwood
+umount /mnt/phone
