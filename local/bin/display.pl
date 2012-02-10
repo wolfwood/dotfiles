@@ -19,10 +19,7 @@ foreach $arg (@ARGV){
 
 
 # output names
-my($lcd, $external);
-
-$lcd = "LVDS1";
-$external = "VGA1";
+my($lcd, $external) = ("LVDS1", "VGA1");
 
 
 if($reset == 1){
@@ -32,8 +29,7 @@ if($reset == 1){
 		`xrandr --output $lcd --off`;
 		`xrandr --output $external --auto`;
 }elsif($present == 1){
-		# find largest common mode between displays
-
+		# XXX: find largest common mode between displays
 		my($mode) = "1024x768";
 
 		`xrandr --output $lcd --mode $mode`;
