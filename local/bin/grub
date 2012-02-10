@@ -1,5 +1,10 @@
 #!/usr/bin/sudo /bin/bash
 
+mount /boot
+mount /boot/efi
+
 grub2-install --boot-directory=/boot/efi/efi --bootloader-id=grub2 --no-floppy --recheck
 grub2-mkconfig -o /boot/efi/efi/grub2/grub.cfg
 efibootmgr --gpt --disk /dev/sda --part 1 --write-signature --label "GRUB2" --loader "\\efi\\grub2\\grub.efi"
+
+umount /boot/efi
