@@ -1,10 +1,54 @@
 #!/usr/bin/sudo /bin/sh
-emerge --sync || exit
-layman -S || exit
-emerge -auvND world || exit
-read -p "Read any portage messages then tap [enter]..."
-etc-update || exit
-revdep-rebuild || exit
-haskell-updater || exit
-emacs-updater || exit
-python-updater || exit
+
+FETCH=1
+EJOBFLAGS="--jobs --load-average=3.75 --nospinner"
+
+for arg in $@; do
+	case $arg in
+		--nofetch) FETCH=0;;
+		--write) EFLAGS=--autounmask-write;;
+		--noparallel) EJOBFLAGS="";;
+	esac
+done
+
+if [ $FETCH -eq 1 ]; then
+	emerge --sync || exit
+	layman -S || exit
+fi
+
+# ALWAYS UPDATE PORTAGE FIRST
+emerge -uv1ND portage || read -p "Continue?" # don't forget to pull dependencies
+
+# git fancy
+emerge $EFLAGS $EJOBFLAGS -auvND --complete-graph=y world
+# --with-bdeps=y
+
+until [ $? -eq 0 ]; do
+	TEMPFLAGS=""
+	read -p "DO NOT WANT>" response || exit
+	case $response in
+		i|\?) echo "(e)tc-update, (h)askell-updater.  (r)esume, (s)kip, (k)eep going.  (b)deps, (p)arallel.  (i)nfo.  (*) world";;
+		p) TEMPFLAGS="$EJOBFLAGS";;
+		P) TEMPFLAGS="";;
+		e) etc-update && false;;
+		h) haskell-updater && false;;
+		b) TEMPFLAGS="$TEMPFLAGS --complete-graph=y --with-bdeps=y";;
+		r) emerge --resume $TEMPFLAGS;;
+		s) emerge --skipfirst --resume $TEMPFLAGS world;;
+		k) emerge -auvND --keep-going y $TEMPFLAGS world;;
+		*) emerge -auvND $TEMPFLAGS world;;
+	esac
+done
+
+read -p "Read any portage messages then tap [enter]..." response || exit
+
+POLISH='etc-update && revdep-rebuild'
+LANG='haskell-updater && emacs-updater && python-updater'
+
+case $response in
+	i|\?) echo "(p)olish, (l)anguage specific tools.  e(x)it.  (*) p & l";;
+	l) $LANG;;
+	p) $POLISH;;
+	x) exit;;
+	*) eval $LANG ; eval $POLISH;;
+esac
