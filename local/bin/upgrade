@@ -1,7 +1,7 @@
 #!/usr/bin/sudo /bin/sh
 
 FETCH=1
-EJOBFLAGS="--jobs --load-average=3.75 --nospinner"
+EJOBFLAGS="--jobs --load-average=5.75 --nospinner"
 
 for arg in $@; do
 	case $arg in
@@ -18,21 +18,20 @@ fi
 
 # ALWAYS UPDATE PORTAGE FIRST
 emerge -uv1ND portage || read -p "Continue?" # don't forget to pull dependencies
+emerge -uv1ND haskell-updater || read -p "Continue?" # don't forget to pull dependencies
 
 # git fancy
 emerge $EFLAGS $EJOBFLAGS -auvND --complete-graph=y world
 # --with-bdeps=y
 
 until [ $? -eq 0 ]; do
-	TEMPFLAGS=""
+	TEMPFLAGS="$EJOBFLAGS"
 	read -p "DO NOT WANT>" response || exit
 	case $response in
-		i|\?) echo "(e)tc-update, (h)askell-updater.  (r)esume, (s)kip, (k)eep going.  (b)deps, (p)arallel.  (i)nfo.  (*) world";;
-		p) TEMPFLAGS="$EJOBFLAGS";;
-		P) TEMPFLAGS="";;
-		e) etc-update && false;;
-		h) haskell-updater && false;;
-		b) TEMPFLAGS="$TEMPFLAGS --complete-graph=y --with-bdeps=y";;
+		i|\?) echo "(e)tc-update, (h)askell-updater.  (r)esume, (s)kip, (k)eep going.  (b)deps.  (i)nfo.  (*) world";;
+		e) `etc-update && false`;;
+		h) `haskell-updater && false`;;
+		b) emerge --complete-graph=y --with-bdeps=y $EJOBFLAGS -auvND world;;
 		r) emerge --resume $TEMPFLAGS;;
 		s) emerge --skipfirst --resume $TEMPFLAGS world;;
 		k) emerge -auvND --keep-going y $TEMPFLAGS world;;

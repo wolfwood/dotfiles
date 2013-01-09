@@ -1,0 +1,32 @@
+
+DESKTOP=0
+
+for arg in $@; do
+	DESKTOP=$arg
+done
+
+#RES=1366x768
+
+MON1=1920x1080
+MON2=1280x1024
+
+RES=$MON2
+
+EVE=EVE
+
+if [ $DESKTOP -eq 1 ]; then
+	#RES=1280x1024
+	RES=$MON2
+	EVE=EVE2
+fi
+
+if [ $DESKTOP -eq 2 ]; then
+	EVE=EVE3
+fi
+
+if [ $DESKTOP -eq 3 ]; then
+	RES=$MON2
+	EVE=EVE4
+fi
+
+wine explorer /desktop=$DESKTOP,$RES ~/.wine/drive_c/Program\ Files\ \(x86\)/CCP/$EVE/eve.exe

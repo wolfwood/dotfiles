@@ -22,4 +22,5 @@ alias less='less -R'
 alias git-log='git log --decorate'
 #PS1='[\u@\h \W]\$ '
 
+
 [[ $- == *i* ]]   &&   . $HOME/repos/git-prompt/git-prompt.sh
