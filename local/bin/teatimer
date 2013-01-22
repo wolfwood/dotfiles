@@ -1,5 +1,0 @@
-#!/bin/sh
-
-export MESSAGE=TTTTTTTEEEEEEEEAAAAAAAAA
-
-sleep $1; xmessage $MESSAGE || echo $MESSAGE

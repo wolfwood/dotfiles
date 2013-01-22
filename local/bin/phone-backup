@@ -1,4 +1,0 @@
-#!/usr/bin/sudo /bin/sh
-mount /dev/sdb /mnt/phone
-su -c "rsync -avz  /mnt/phone/ ~/phone/backup/" wolfwood
-umount /mnt/phone

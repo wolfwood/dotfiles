@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# scan
-wicd-cli -ySl
-
-read -e INPUT
-
-wicd-cli -ycn $INPUT
-
