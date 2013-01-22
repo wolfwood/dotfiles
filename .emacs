@@ -1,6 +1,9 @@
 ;; -- Paths --
 (setq load-path (append load-path (list "~/.emacs.d")))
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
+;;(add-to-list 'load-path "/path/to/rust-mode/")
+(require 'rust-mode)
 
 ;; -- Global Emacs Config --
 (setq default-tab-width 2)
@@ -8,7 +11,7 @@
 (setq font-lock-verbose nil)
 (setq-default show-trailing-whitespace t)
 
-(color-theme-zenburn)
+(load-theme 'zenburn)
 
 (setq vcursor-key-bindings 't)      ;; enable default bindings to try it out
 (load "vcursor")
