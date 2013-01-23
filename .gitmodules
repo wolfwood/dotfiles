@@ -1,3 +1,6 @@
 [submodule ".emacs.d/themes"]
 	path = .emacs.d/themes
 	url = git://github.com/bbatsov/zenburn-emacs.git
+[submodule "repos/oh-my-zsh"]
+	path = repos/oh-my-zsh
+	url = git://github.com/robbyrussell/oh-my-zsh.git
