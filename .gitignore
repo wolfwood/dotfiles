@@ -69,7 +69,7 @@ dissertation
 downloads
 music
 pics
-repos
+repos/*/
 snapshots
 sw
 video
@@ -78,10 +78,10 @@ video
 .bash_logout
 .bash_profile
 .bashrc
-.gtkrc-2.0
-.irssi
-.toprc
 .bash_completion.d
 .config
 .gconf
 .gconfd
+.zcompdump
+.zsh-update
+.zsh_history
