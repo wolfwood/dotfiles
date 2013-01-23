@@ -10,10 +10,15 @@ ZSH_THEME="gentoo"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# color
 alias ls='ls --color=auto'
 alias less='less -R'
 alias grep="grep --color=always"
+
+# root
 alias se=sudoedit
+alias root="sudo -E zsh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
