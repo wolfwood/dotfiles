@@ -82,6 +82,7 @@ video
 .config
 .gconf
 .gconfd
+.irssi
 .zcompdump
 .zsh-update
 .zsh_history
