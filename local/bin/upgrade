@@ -17,7 +17,9 @@ if [ $FETCH -eq 1 ]; then
 fi
 
 # ALWAYS UPDATE PORTAGE FIRST
-emerge -uv1ND portage || read -p "Continue?" # don't forget to pull dependencies
+emerge -uv1 portage || read -p "Continue?" # don't forget to pull dependencies
+
+emerge -uv1 layman haskell-updater python-updater || read -p "Continue?" # don't forget to pull dependencies
 
 # git fancy
 emerge $EFLAGS $EJOBFLAGS -auvND --complete-graph=y world
