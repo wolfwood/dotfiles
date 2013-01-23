@@ -8,7 +8,7 @@ URxvt.cursorUnderline:		true
 URxvt.urgentOnBell:		true
 
 URxvt.perl-ext:			default,matcher
-URxvt.urlLauncher:		uzbl-browser
+URxvt.url-launcher:		uzbl-browser
 URxvt.matcher.button:		1
 
 /*
