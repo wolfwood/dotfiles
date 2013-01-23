@@ -47,5 +47,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[magenta]%}⚡%{$fg_bold[blue]%}"
-PATH="/usr/lib/colorgcc/bin:$PATH"
+PATH="PATH=$HOME/repos/buildtools/local/bin:/usr/lib/colorgcc/bin:$HOME/local/bin:$PATH:$HOME/local-gdc/bin"
+XDG_DOWNLOAD_DIR="$HOME/downloads"
 EDITOR=/usr/bin/emacs
