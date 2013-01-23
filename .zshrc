@@ -10,6 +10,8 @@ ZSH_THEME="gentoo"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ls='ls --color=auto'
+alias less='less -R'
 alias grep="grep --color=always"
 alias se=sudoedit
 
@@ -39,5 +41,6 @@ plugins=(git git-flow archlinux)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[magenta]%}⚡%{$fg_bold[blue]%}"
 PATH="/usr/lib/colorgcc/bin:$PATH"
+EDITOR=/usr/bin/emacs
