@@ -48,4 +48,4 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[magenta]%}⚡%{$fg_bold[blue]%}"
 PATH="/usr/lib/colorgcc/bin:$PATH"
-EDITOR=/usr/bin/emacs
+export EDITOR=/usr/bin/emacs
