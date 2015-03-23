@@ -13,16 +13,17 @@ done
 
 if [ $FETCH -eq 1 ]; then
 	emerge --sync || exit
-	layman -S || exit
+	#layman -S || exit
+	eix-update || echo "Lolfail"
 fi
 
 # ALWAYS UPDATE PORTAGE FIRST
-emerge -uv1ND portage || read -p "Continue?" # don't forget to pull dependencies
-emerge -uv1ND haskell-updater || read -p "Continue?" # don't forget to pull dependencies
+emerge -uv1 portage || read -p "emerge portage fail: Continue?" # don't forget to pull dependencies
+emerge -uv1 haskell-updater || read -p "emerge haskell-updater fail: Continue?" # don't forget to pull dependencies
 
 # git fancy
-emerge $EFLAGS $EJOBFLAGS -auvND --complete-graph=y world
-# --with-bdeps=y
+emerge $EFLAGS $EJOBFLAGS -auvND world
+# --with-bdeps=y --complete-graph=y
 
 until [ $? -eq 0 ]; do
 	TEMPFLAGS="$EJOBFLAGS"
@@ -41,7 +42,7 @@ done
 
 read -p "Read any portage messages then tap [enter]..." response || exit
 
-POLISH='etc-update && revdep-rebuild'
+POLISH='etc-update'
 LANG='haskell-updater && emacs-updater && python-updater'
 
 case $response in
@@ -51,3 +52,5 @@ case $response in
 	x) exit;;
 	*) eval $LANG ; eval $POLISH;;
 esac
+
+hoogle-build-localdb

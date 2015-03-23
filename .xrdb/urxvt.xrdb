@@ -5,13 +5,16 @@ URxvt.scrollBar:		false
 URxvt.visualBell:		true
 URxvt.loginShell:		true
 URxvt.cursorUnderline:		true
+URxvt.urgentOnBell:		true
+URxvt*secondaryWheel:		true
+
 
 URxvt.perl-ext:			default,matcher
-URxvt.urlLauncher:		uzbl-browser
+URxvt.url-launcher:		uzbl-browser
 URxvt.matcher.button:		1
 
-URxvt.font:	xft:inconsolata:pixelsize=22:antialias=true,xft:VL Gothic:pixelsize=22:antialias=true,xft:DejaVu Sans:pixelsize=15:antialias=true,xft:unifont:style=Medium:pixelsize=22:antialias=true
-URxvt.boldFont:	xft:inconsolata:bold:pixelsize=22:antialias=true,xft:VL Gothic:bold:pixelsize=22:antialias=true,xft:DejaVu Sans:pixelsize=15:antialias=true:bold,xft:unifont:bold:pixelsize=22:antialias=true
+URxvt.font:	xft:inconsolata:pixelsize=16:antialias=true,xft:VL Gothic:pixelsize=16:antialias=true,xft:DejaVu Sans:pixelsize=16:antialias=true,xft:unifont:style=Medium:pixelsize=16:antialias=true
+URxvt.boldFont:	xft:inconsolata:bold:pixelsize=16:antialias=true,xft:VL Gothic:bold:pixelsize=16:antialias=true,xft:DejaVu Sans:pixelsize=16:antialias=true:bold,xft:unifont:bold:pixelsize=16:antialias=true
 
 #if defined(COLOR_FG) && defined(COLOR_BG)
 URxvt.background:              COLOR_BG
