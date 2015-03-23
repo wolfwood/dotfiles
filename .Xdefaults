@@ -1,5 +1,5 @@
-#define FONT       -*-*-medium-*-*-*-20-*-*-*-*-*-*-*
-#define FONT_BOLD  -*-*-bold-*-*-*-20-*-*-*-*-*-*-*
+#define FONT       -*-lucidatypewriter-medium-*-*-*-18-*-*-*-*-*-*-*
+#define FONT_BOLD  -*-lucidatypewriter-bold-*-*-*-18-*-*-*-*-*-*-*
 
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
@@ -7,7 +7,7 @@ Xft.hintstyle:  hintfull
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-Xft.dpi: 96
+Xft.dpi: 125
 
 
 Uzbl*font: xft:inconsolata:pixelsize=11:antialias=true,xft:VL Gothic:pixelsize=11:antialias=true,xft:DejaVu Sans:pixelsize=11:antialias=true,xft:unifont:style=Medium:pixelsize=11:antialias=true
@@ -18,11 +18,18 @@ Uzbl-core*font: xft:inconsolata:pixelsize=11:antialias=true,xft:VL Gothic:pixels
 #define FANCY_FONT_BOLD		Inconsolata-Bold-11
 
 Xmessage*font: FONT
+XLock*font: FONT
+XLockmore*font: FONT
 
 #include "/home/wolfwood/.xrdb/look-zenburn.xrdb"
 #include "/home/wolfwood/.xrdb/xterm.xrdb"
 #include "/home/wolfwood/.xrdb/urxvt.xrdb"
 #include "/home/wolfwood/.xrdb/emacs.xrdb"
+
+URxvt.depth: 32
+URxvt*background: rgba:0000/0000/0000/cccc
+URxvt*secondaryWheel: true
+
 
 *colorBD:                 COLOR_TERM_LIGHT_YELLOW
 *colorUL:                 COLOR_TERM_LIGHT_RED

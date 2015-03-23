@@ -11,12 +11,17 @@ URxvt.perl-ext:			default,matcher
 URxvt.url-launcher:		uzbl-browser
 URxvt.matcher.button:		1
 
+URxvt*secondaryWheel: true
+
+//URxvt*letterSpace: 4
+
 /*
 URxvt.Font: FANCY_FONT
 URxvt.BoldFont: FANCY_FONT_BOLD
 */
-URxvt.font:	xft:inconsolata:pixelsize=15:antialias=true,xft:VL Gothic:pixelsize=15:antialias=true,xft:DejaVu Sans:pixelsize=15:antialias=true,xft:unifont:style=Medium:pixelsize=15:antialias=true
-URxvt.boldFont:	xft:inconsolata:bold:pixelsize=15:antialias=true,xft:VL Gothic:bold:pixelsize=15:antialias=true,DejaVu Sans:pixelsize=15:antialias=true:bold,xft:unifont:bold:pixelsize=15:antialias=true
+URxvt.font:	xft:inconsolata:pixelsize=15:antialias=true,xft:symbola:pixelsize=12:antialias=true,xft:VL Gothic:pixelsize=12:antialias=true,xft:DejaVu Sans:pixelsize=12:antialias=true,xft:unifont:style=Medium:pixelsize=12:antialias=true
+URxvt.boldFont:	xft:inconsolata:bold:pixelsize=15:antialias=true,xft:symbola:bold:pixelsize=12:antialias=true,xft:VL Gothic:bold:pixelsize=12:antialias=true,DejaVu Sans:pixelsize=12:antialias=true:bold,xft:unifont:bold:pixelsize=12:antialias=true
+
 
 #if defined(COLOR_FG) && defined(COLOR_BG)
 URxvt.background:              COLOR_BG
