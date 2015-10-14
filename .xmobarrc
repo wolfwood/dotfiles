@@ -1,0 +1,23 @@
+Config { font = "xft:inconsolata:bold:pixelsize=10:antialias=true"
+       , bgColor = "#202020"
+       , fgColor = "#9fc59f" -- "#93e0e3"
+       , position = Bottom
+       , lowerOnStart = True
+       , commands = [ Run MultiCpu ["-t","CPU <autobar>","-L","50","-H","75","-l","#9fc59f","-n","#dfaf8f","-h","red"] 10
+                    , Run Memory ["-t","Mem <usedbar>","-L","60","-H","85","-l","#9fc59f","-n","#dfaf8f","-h","red"] 50
+                    , Run Date "%a %b %_d <fc=#dc8cc3>%k:%M</fc>" "date" 50
+        -- network activity monitor (dynamic interface resolution)
+        , Run DynNetwork [ "--template" , "<dev>: <tx>kB/s:<rx>kB/s"
+                             --, "--Low"      , "1000"       -- units: kB/s
+                             --, "--High"     , "5000"       -- units: kB/s
+                             --, "--low"      , "darkgreen"
+                             --, "--normal"   , "darkorange"
+                             --, "--high"     , "darkred"
+                             ] 10
+		    , Run Wireless "wlp7s0" [] 50
+	            , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{ %wlp7s0wi% | %dynnetwork% | %multicpu% | %memory% | %date% "
+       }
